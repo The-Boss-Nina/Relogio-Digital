@@ -4,6 +4,10 @@ const toggleThemeButton = document.getElementById("toggleTheme");
 
 let is24HourFormat = true;
 
+// Alternar tema entre claro e escuro
+let isDarkTheme = false;
+const bodyElement = document.body;
+
 function updateTime() {
     const now = new Date();
     let hours = now.getHours();
@@ -28,9 +32,16 @@ toggleFormatButton.addEventListener("click", () => {
     updateTime();
 });
 
+// Alternar entre temas claro e escuro
 toggleThemeButton.addEventListener("click", () => {
-    document.body.classList.toggle("dark-theme");
+    isDarkTheme = !isDarkTheme;
+    if (isDarkTheme) {
+        bodyElement.classList.add('dark-theme');
+        bodyElement.classList.remove('light-theme');
+    } else {
+        bodyElement.classList.add('light-theme');
+        bodyElement.classList.remove('dark-theme');
+    }
 });
 
-updateTime();
 setInterval(updateTime, 1000);
